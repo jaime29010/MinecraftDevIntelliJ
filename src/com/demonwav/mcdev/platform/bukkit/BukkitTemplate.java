@@ -1,8 +1,6 @@
 package com.demonwav.mcdev.platform.bukkit;
 
-import com.demonwav.mcdev.util.MinecraftFileTemplateGroupFactory;
 import com.demonwav.mcdev.platform.AbstractTemplate;
-
 import com.intellij.ide.fileTemplates.FileTemplate;
 import com.intellij.ide.fileTemplates.FileTemplateManager;
 import com.intellij.openapi.project.Project;
@@ -13,6 +11,10 @@ import java.util.Properties;
 
 public class BukkitTemplate extends AbstractTemplate {
 
+    public static final String MAIN_CLASS = "bukkit_main_class.java";
+    public static final String PLUGIN_DESCRIPTION_FILE = "bukkit_plugin_description_file.yml";
+    public static final String POM = "bukkit_pom_template.xml";
+
     public static void applyMainClassTemplate(Project project, VirtualFile file, String packageName, String className) {
         Properties properties = new Properties();
 
@@ -20,7 +22,7 @@ public class BukkitTemplate extends AbstractTemplate {
         properties.setProperty("CLASS_NAME", className);
 
         try {
-            applyTemplate(project, file, MinecraftFileTemplateGroupFactory.BUKKIT_MAIN_CLASS_TEMPLATE, properties);
+            applyTemplate(project, file, MAIN_CLASS, properties);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,7 +33,7 @@ public class BukkitTemplate extends AbstractTemplate {
         properties.setProperty("BUILD_VERSION", version);
 
         FileTemplateManager manager = FileTemplateManager.getInstance(project);
-        FileTemplate fileTemplate = manager.getJ2eeTemplate(MinecraftFileTemplateGroupFactory.BUKKIT_POM_TEMPLATE);
+        FileTemplate fileTemplate = manager.getJ2eeTemplate(POM);
         try {
             return fileTemplate.getText(properties);
         } catch (IOException e) {
@@ -88,7 +90,7 @@ public class BukkitTemplate extends AbstractTemplate {
         }
 
         try {
-            applyTemplate(project, file, MinecraftFileTemplateGroupFactory.BUKKIT_PLUGIN_YML_TEMPLATE, properties);
+            applyTemplate(project, file, PLUGIN_DESCRIPTION_FILE, properties);
         } catch (IOException e) {
             e.printStackTrace();
         }

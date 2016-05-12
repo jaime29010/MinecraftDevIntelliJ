@@ -1,6 +1,5 @@
 package com.demonwav.mcdev.platform.bungeecord;
 
-import com.demonwav.mcdev.util.MinecraftFileTemplateGroupFactory;
 import com.demonwav.mcdev.platform.AbstractTemplate;
 
 import com.intellij.ide.fileTemplates.FileTemplate;
@@ -13,6 +12,10 @@ import java.util.Properties;
 
 public class BungeeCordTemplate extends AbstractTemplate {
 
+    public static final String MAIN_CLASS = "bungeecord_main_class.java";
+    public static final String PLUGIN_DESCRIPTION_FILE = "bungeecord_plugin_description_file.yml";
+    public static final String POM = "bungeecord_pom_template.xml";
+
     public static void applyMainClassTemplate(Project project, VirtualFile file, String packageName, String className) {
         Properties properties = new Properties();
 
@@ -20,7 +23,7 @@ public class BungeeCordTemplate extends AbstractTemplate {
         properties.setProperty("CLASS_NAME", className);
 
         try {
-            applyTemplate(project, file, MinecraftFileTemplateGroupFactory.BUNGEECORD_MAIN_CLASS_TEMPLATE, properties);
+            applyTemplate(project, file, MAIN_CLASS, properties);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,7 +34,7 @@ public class BungeeCordTemplate extends AbstractTemplate {
         properties.setProperty("BUILD_VERSION", version);
 
         FileTemplateManager manager = FileTemplateManager.getInstance(project);
-        FileTemplate fileTemplate = manager.getJ2eeTemplate(MinecraftFileTemplateGroupFactory.BUNGEECORD_POM_TEMPLATE);
+        FileTemplate fileTemplate = manager.getJ2eeTemplate(POM);
         try {
             return fileTemplate.getText(properties);
         } catch (IOException e) {
@@ -70,7 +73,7 @@ public class BungeeCordTemplate extends AbstractTemplate {
         }
 
         try {
-            applyTemplate(project, file, MinecraftFileTemplateGroupFactory.BUKKIT_PLUGIN_YML_TEMPLATE, properties);
+            applyTemplate(project, file, PLUGIN_DESCRIPTION_FILE, properties);
         } catch (IOException e) {
             e.printStackTrace();
         }

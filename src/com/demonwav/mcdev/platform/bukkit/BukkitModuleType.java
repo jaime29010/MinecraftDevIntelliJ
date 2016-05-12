@@ -3,7 +3,8 @@ package com.demonwav.mcdev.platform.bukkit;
 import com.demonwav.mcdev.platform.MinecraftModuleType;
 import com.demonwav.mcdev.asset.PlatformAssets;
 import com.demonwav.mcdev.platform.PlatformType;
-
+import com.intellij.ide.fileTemplates.FileTemplateDescriptor;
+import com.intellij.ide.fileTemplates.FileTemplateGroupDescriptor;
 import com.intellij.openapi.module.ModuleTypeManager;
 
 import javax.swing.Icon;
@@ -43,5 +44,10 @@ public class BukkitModuleType extends MinecraftModuleType {
         return PlatformAssets.BUKKIT_ICON;
     }
 
-
+    @Override
+    public void populateFileTemplateGroupDescriptor(FileTemplateGroupDescriptor group) {
+        group.addTemplate(new FileTemplateDescriptor(BukkitTemplate.MAIN_CLASS, PlatformAssets.BUKKIT_ICON));
+        group.addTemplate(new FileTemplateDescriptor(BukkitTemplate.PLUGIN_DESCRIPTION_FILE, PlatformAssets.BUKKIT_ICON));
+        group.addTemplate(new FileTemplateDescriptor(BukkitTemplate.POM, PlatformAssets.BUKKIT_ICON));
+    }
 }

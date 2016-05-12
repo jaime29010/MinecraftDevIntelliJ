@@ -3,6 +3,7 @@ package com.demonwav.mcdev.platform.bukkit;
 import com.demonwav.mcdev.asset.PlatformAssets;
 import com.demonwav.mcdev.platform.PlatformType;
 
+import com.intellij.ide.fileTemplates.FileTemplateGroupDescriptor;
 import com.intellij.openapi.module.ModuleTypeManager;
 
 import javax.swing.Icon;
@@ -36,5 +37,10 @@ public class PaperModuleType extends SpigotModuleType {
     @Override
     public Icon getNodeIcon(@Deprecated boolean isOpened) {
         return PlatformAssets.PAPER_ICON;
+    }
+
+    @Override
+    public void populateFileTemplateGroupDescriptor(FileTemplateGroupDescriptor group) {
+        // NOOP
     }
 }

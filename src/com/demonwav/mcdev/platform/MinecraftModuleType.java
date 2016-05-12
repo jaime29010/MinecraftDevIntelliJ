@@ -3,6 +3,7 @@ package com.demonwav.mcdev.platform;
 import com.demonwav.mcdev.creator.MinecraftModuleBuilder;
 import com.demonwav.mcdev.asset.PlatformAssets;
 
+import com.intellij.ide.fileTemplates.FileTemplateGroupDescriptor;
 import com.intellij.openapi.module.JavaModuleType;
 import com.intellij.openapi.module.ModuleTypeManager;
 import org.jetbrains.annotations.NotNull;
@@ -44,5 +45,9 @@ public class MinecraftModuleType extends JavaModuleType {
     @Override
     public Icon getNodeIcon(@Deprecated boolean isOpened) {
         return PlatformAssets.MINECRAFT_ICON;
+    }
+
+    public void populateFileTemplateGroupDescriptor(FileTemplateGroupDescriptor group) {
+        // NOOP
     }
 }
